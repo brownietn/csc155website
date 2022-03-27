@@ -34,14 +34,25 @@ if (isset($_POST['choice']))
 <body>
 
 <form method='POST'>
-User: <input type='text' name='user' value='<?php showPost("user");?>'><br>
+<table style="border: 3px black; border-radius: 10px; 
+background-color: #4AA516; padding: 5px; margin-left: auto; 
+margin-right: auto;">
+<tr>
+<td>User:</td>
+<td><input type='text' name='user' value='<?php showPost("user");?>'></td>
+</tr>
+<tr>
+<td>Password:</td> 
+<td><input type='password' name='password' value='<?php 
+showPost("password");?>'></td>
+</tr>
+<tr>
+<td><input type='submit' name='choice' value='Login'></td>
+<td></td>
+</tr>
+</table>
 
-Password: <input type='password' name='password' value='<?php 
-showPost("password");?>'><br>
-
-<input type='submit' name='choice' value='Login'><br>
-
-user is Wonder, password is Woman <br>
+<center>user: Wonder password: Woman</center>
 
 <div style='position: absolute; bottom: 10px; '><p><?php echo $message;?></p>
 <br>
