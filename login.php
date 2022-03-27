@@ -5,7 +5,7 @@ CSC155 201h sp -->
 
 <html>
 <head>
-<title>Decide my title</title>
+<title>Mary's CSC155 Class Website</title>
 <?php
 // php library with php functions
 require("lib/phpfunctions.php");
@@ -17,7 +17,7 @@ $message="";
 $user = getPOST('user');
 $password = getPOST('password');
 
-if (isset($_POST['choice]))
+if (isset($_POST['choice']))
 {
   if ($_POST['choice'] == 'Login')
   {
