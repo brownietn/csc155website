@@ -38,11 +38,28 @@ if(isset($_POST['choice']))
 <body>
 
 <form method='POST'>
-<br>Username:<input type='text' name='username'>
-<br>Password:<input type='password' name='password'>
-<br>User Group:<input type='text' name='usergroup'>
-<br><input type='submit' name='choice' value='Create User'>
-</form>
+<table style="border: 3px black; border-radius: 10px;
+background-color: #4AA516; padding: 5px: margin-left: auto;
+margin-right: auto;">
+<tr>
+<td>Username:</td>
+<td><input type='text' name='username' value='<?php showPost("username");?>'>
+</td>
+</tr> 
+<tr>
+<td>Password:</td>
+<td><input type='password' name='password' value='<?php showPost("password");
+?>'></td>
+</tr>
+<tr>
+<td>User Group:</td>
+<td><input type='text' name='usergroup' value='<?php showPost("usergroup");
+?>'></td>
+</tr>
+<td><input type='submit' name='choice' value='Create User'></td>
+<td></td>
+</tr>
+</table>
 
 
 </body>

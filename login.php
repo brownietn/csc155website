@@ -38,7 +38,7 @@ if (isset($_POST['choice']))
     }
     $message = "Invalid username or password!";
     }
-  if ($_POST['choice'] == 'Create User')
+  if ($_POST['choice'] == 'New User')
   {
      header('Location: newuser.php'); 
   }
@@ -66,11 +66,10 @@ showPost("usergroup");?>'></td>
 </tr>
 <tr>
 <td><input type='submit' name='choice' value='Login'></td>
-<td><input type='submit' name='choice' value='Create User'</td>
+<td><input type='submit' name='choice' value='New User'</td>
 </tr>
 </table>
 
-<center>user: Wonder password: Woman</center>
 
 <div style='position: absolute; bottom: 10px; '><p><?php echo $message;?></p>
 <br>
