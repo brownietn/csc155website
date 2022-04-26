@@ -5,6 +5,4 @@ CSC155 201h sp -->
 
 <?php
 echo "User: <b><code>" . $_SESSION['user'] . "</code></b>";
-<br>
-echo date()
 ?>
