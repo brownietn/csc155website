@@ -13,21 +13,35 @@ require("lib/phpfunctions.php");
 //connect to the $_SESSION
 session_start();
 
+$user = "mbrown287";
+$conn = mysqli_connect("localhost", $user, $user, $user);
+
 $message="";
-$user = getPOST('user');
-$password = getPOST('password');
+$username=getPost('username');
+$password=getPost('password');
+$usergroup=getPost('usergroup');
+
+if (mysqli_connect_errno())
+{
+  echo "<b>Failed to connect to MySQL: " . mysqli_connect_error() . "</b>";
+}
 
 if (isset($_POST['choice']))
 {
+  $choice = $_POST['choice'];
   if ($_POST['choice'] == 'Login')
   {
-    if (validate_login($user, $password))
+    if (validate_login($username, $password))
     {
-      $_SESSION['user'] = $user;
+      $_SESSION['username'] = $username;
       header('Location: welcome.php');
     }
     $message = "Invalid username or password!";
     }
+  if ($_POST['choice'] == 'Create User')
+  {
+     header('Location: newuser.php'); 
+  }
 }
 ?>
 </head>
@@ -39,16 +53,20 @@ background-color: #4AA516; padding: 5px; margin-left: auto;
 margin-right: auto;">
 <tr>
 <td>User:</td>
-<td><input type='text' name='user' value='<?php showPost("user");?>'></td>
+<td><input type='text' name='username' value='<?php showPost("username");?>'></td>
 </tr>
 <tr>
 <td>Password:</td> 
 <td><input type='password' name='password' value='<?php 
 showPost("password");?>'></td>
 </tr>
+<td>User Group:</td>
+<td><input type='text' name='usergroup' value='<?php
+showPost("usergroup");?>'></td>
+</tr>
 <tr>
 <td><input type='submit' name='choice' value='Login'></td>
-<td></td>
+<td><input type='submit' name='choice' value='Create User'</td>
 </tr>
 </table>
 

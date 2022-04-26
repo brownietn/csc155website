@@ -7,7 +7,7 @@ CSC155 201h sp -->
 <head>
 <title>Mary's CSC155 Class Page</title>
 <?php
-//php libarary with functions
+//php library with functions
 require("lib/phpfunctions.php");
 
 //php startup code
