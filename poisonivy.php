@@ -14,6 +14,31 @@ require("lib/phpfunctions.php");
 session_start();
 validate_or_bounce();
 
+$ITEM = 'Poison Ivy';
+
+if (! isset($_SESSION[$ITEM]))
+{
+  $_SESSION[$ITEM]=0;
+}
+
+if (isset($_POST['choice']))
+{
+  $choice = $_POST['choice'];
+  if ($choice == 'Add 1')
+  {
+    $_SESSION[$ITEM] +=1;
+  }
+  else if ($choice == 'Add 5')
+  {
+    $_SESSION[$ITEM] +=5;
+  }
+  else if ($choice == 'Remove All')
+  {
+    $_SESSION[$ITEM] = 0;
+  }
+}
+
+
 ?>
 </head>
 <body>
@@ -31,6 +56,18 @@ Regeneration</h3>
 <br>
 <h2>Tools and Weapons</h2>
 <h3>No specific weapons</h3>
+<br>
+<br>
+<?php echo $_SESSION[$ITEM] . ": $ITEM<br>";?>
+
+<form method='POST'>
+<input type='submit' name='choice' value='Add 1'>
+<input type='submit' name='choice' value='Add 5'>
+<input type='submit' name='choice' value='Remove All'>
+</form>
+<br>
+<br>
+<br>
 
 
 <div id=<?php require("lib/footer.php"); ?></div>
