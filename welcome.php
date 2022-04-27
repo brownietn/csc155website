@@ -5,7 +5,7 @@ CSC155 201h sp -->
 
 <html>
 <head>
-<title>Mary's CSC155 Class Page</title>
+<title>Mary's Quest for World Domination</title>
 <?php
 //php library with functions
 require("lib/phpfunctions.php");
@@ -18,9 +18,16 @@ validate_or_bounce();
 </head>
 <body>
 <?php readfile("lib/header.html"); ?>
+<br><br>
 
-This will be the welcome page.
-
+<center><h3>Having a bad day, week, month, year?</h3></center>
+<br>
+<center><h3>Need help making it better?</h3></center>
+<br>
+<center><h3>Check out our options for assistance in dominating your 
+world!</h3></center> 
+<br>
+<br>
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
