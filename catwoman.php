@@ -54,6 +54,7 @@ Master Thief</h3>
 <h3>Whip, Clawed Gloves</h3>
 <br>
 <br>
+<h4>Place your order<br></h4>
 <?php echo $_SESSION[$ITEM] . ": $ITEM<br>";?>
 
 <form method='POST'>

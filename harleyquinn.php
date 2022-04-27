@@ -56,6 +56,7 @@ stamina, reflexes, and agility; Immunity to various toxins</h3>
 <h3>Uses weaponized props</h3>
 <br>
 <br>
+<h4>Place your order><br></h4>
 <?php echo $_SESSION[$ITEM] . ": $ITEM<br>";?>
 
 <form method='POST'>
