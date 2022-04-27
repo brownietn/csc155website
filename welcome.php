@@ -21,7 +21,7 @@ validate_or_bounce();
 
 This will be the welcome page.
 
-<?php require("lib/footer.php"); ?>
+<div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
 

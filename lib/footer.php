@@ -4,6 +4,9 @@ Mary Brown
 CSC155 201h sp -->
 
 <?php
-echo "User: <b><code>" . $_SESSION['user'] . "</code></b>";
+echo "User: <b><code>" . $_SESSION['username'] . "</code></b>";
+echo date("F j, Y, g:i a");      
 ?>
+
+
 

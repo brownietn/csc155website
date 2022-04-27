@@ -21,7 +21,7 @@ validate_or_bounce();
 
 This page will be the shopping cart page.
 
-<?php require("lib/footer.php"); ?>
+<div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
 

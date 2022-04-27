@@ -21,7 +21,7 @@ validate_or_bounce();
 
 This page is for item4.
 
-<?php require("lib/footer.php"); ?>
+<div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
 
