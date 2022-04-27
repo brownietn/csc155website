@@ -10,6 +10,20 @@ CSC155 201h sp -->
 //php libarary with functions
 require("lib/phpfunctions.php");
 
+function echoCart()
+{
+  $items = array('CatWoman', 'Gemini', 'Harley Quinn', 'Poison Ivy');
+  foreach($items as $item)
+  {
+    if(isset($_SESSION[$item]) && $_SESSION[$item]>0)
+     {
+      echo $item . ": " ;
+      echo $_SESSION[$item];
+      echo "<br>";
+    }
+  }
+}
+
 //php startup code
 session_start();
 validate_or_bounce();
@@ -19,8 +33,12 @@ validate_or_bounce();
 <body>
 <?php readfile("lib/header.html"); ?>
 
-This page will be the shopping cart page.
-
+<h4>The following villians will be arriving soon!</h4>
+<br>
+<?php echoCart() ?>
+<br>
+<br>
+<br>
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
