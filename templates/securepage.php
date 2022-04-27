@@ -5,7 +5,7 @@ CSC155 201h sp -->
 
 <html>
 <head>
-<title>Mary's CSC155 Class Page</title>
+<title>Mary's Quest for World Domination</title>
 <?php
 //php libarary with functions
 require("lib/phpfunctions.php");
