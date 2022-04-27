@@ -19,7 +19,17 @@ validate_or_bounce();
 <body>
 <?php readfile("lib/header.html"); ?>
 
-This page is for item3.
+<br>
+<br>
+<img src='images/harley.jpg'>
+<br>
+<h2>Skills and Abilities</h2>
+<h3>Trained psychiatrist; Expert gymnast; Enhanced strength, durability, 
+stamina, reflexes, and agility; Immunity to various toxins</h3>
+<br>
+<h2>Tools and Weapons</h2>
+<h3>Uses weaponized props</h3>
+
 
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>

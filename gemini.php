@@ -18,8 +18,16 @@ validate_or_bounce();
 </head>
 <body>
 <?php readfile("lib/header.html"); ?>
-
-This page will be for item2.
+<br>
+<br>
+<img src='images/gemini.jpg'>
+<br>
+<h2>Skills and Abilities</h2>
+<h3>Shapeshifting, Elasticity, Amophous Physiology</h3>
+<br>
+<h2>Tools and Weapons</h2>
+<h3>No specific weapons</h3>
+<br>
 
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>
