@@ -13,6 +13,7 @@ require("lib/phpfunctions.php");
 //connect to the $_SESSION
 session_start();
 
+
 $user = "mbrown287";
 $conn = mysqli_connect("localhost", $user, $user, $user);
 
