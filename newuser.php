@@ -5,10 +5,11 @@ CSC155 201h sp -->
 
 <html>
 <head>
-<title>Mary's CSC155 Class Page</title>
+<title>Mary's Quest for World Domination</title>
 <?php
 //php libarary with functions
 require("lib/phpfunctions.php");
+
 $user="mbrown287";
 $conn=mysqli_connect("localhost", $user, $user, $user);
 
@@ -22,15 +23,24 @@ if(isset($_POST['choice']))
   $choice=$_POST['choice'];
   if($choice == "Create User")
   {
-    $stmt = $conn->prepare("INSERT INTO users SET username=?,
-                                                  password=?,
-                                                  usergroup=?");
-    $stmt->bind_param("sss", $username, $password, $usergroup);
-    $username=$_POST['username'];
-    $password=$_POST['password'];
-    $usergroup=$_POST['usergroup'];
-    $stmt->execute();
-   }
+    $password = $_POST['password155'];
+    $verifypassword = $_POST['verifypassword155'];
+    if($password == $verifypassword)
+    {
+      $stmt = $conn->prepare("INSERT INTO users SET username=?,
+                                                    email=?,
+                                                  usergroup=?,
+                                                 encrypted_password=?
+                                                 ");
+      $stmt->bind_param("ssss", $username, $email, $usergroup, $encrypted);
+      $username=$_POST['username155'];
+      $email=$_POST['email155'];
+      $usergroup=$_POST['usergroup'];
+      $encrypted= password_hash($password, PASSWORD_DEFAULT);
+
+      $stmt->execute();
+    }
+  }
 }
 
 ?>
@@ -43,18 +53,23 @@ background-color: #4AA516; padding: 5px: margin-left: auto;
 margin-right: auto;">
 <tr>
 <td>Username:</td>
-<td><input type='text' name='username' value='<?php showPost("username");?>'>
-</td>
+<td><input type='text' name='username155'></td>
 </tr> 
 <tr>
-<td>Password:</td>
-<td><input type='password' name='password' value='<?php showPost("password");
-?>'></td>
+<td>Email:</td>
+<td><input type='text' name='email155'></td
 </tr>
 <tr>
-<td>User Group:</td>
-<td><input type='text' name='usergroup' value='<?php showPost("usergroup");
-?>'></td>
+<td>Usergroup:</td>
+<td><input type='text' name='usergroup'></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type='password' name='password155'</td>
+</tr>
+<tr>
+<td>Verify Password::</td>
+<td><input type='password' name='verifypassword155'</td>
 </tr>
 <td><input type='submit' name='choice' value='Create User'></td>
 <td></td>
