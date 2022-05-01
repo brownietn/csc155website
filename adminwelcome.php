@@ -6,25 +6,24 @@ CSC155 201h sp -->
 <html>
 <head>
 <title>Mary's Quest for World Domination</title>
-// php library loading first
+<?php
+//php library with functions
 require("lib/phpfunctions.php");
 
-// local php functions go here 
-
-// local php startup code goes here 
+//php startup code
 session_start();
 validate_or_bounce();
-
-session_destroy(); /// remove ALL session information
-header("refresh: 5; url=login.php");
 
 ?>
 </head>
 <body>
+<?php readfile("lib/adminheader.html"); ?>
+<br><br>
+
+content goes here
 
 
-Good bye, redirecting in 5 seconds.
-
-
+<div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
+

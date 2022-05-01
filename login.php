@@ -10,8 +10,6 @@ CSC155 201h sp -->
 // php library with php functions
 require("lib/phpfunctions.php");
 
-//connect to the $_SESSION
-session_start();
 
 
 $user = "mbrown287";
