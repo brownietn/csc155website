@@ -24,17 +24,18 @@ function getPost($key)
   return "";
 }
 
-function validate_login($conn, $username,$password)
+function validate_login($conn, $username, $password)
 {
   if ($username=="Wonder" && $password=="Woman")
-  return true;
+    return true;
   $row = getUserByUsername($conn, $username);
 
   if($row == "fail")
-  return false;
+    return false;
   if (password_verify($password, $row['encrypted_password']))
-  return true;
-  reutrn false;
+    return true;
+    header('Location: login.php');
+  return false;
 }
 
 function connectDB()
@@ -49,9 +50,9 @@ function connectDB()
   return $conn;
 }
 
-function getUseByUsername($conn, $username)
+function getUserByUsername($conn, $username)
 {
-  $sql = "SELECT * FROM users WHERE username=?"
+  $sql = "SELECT * FROM users WHERE username=?";
   
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $username);

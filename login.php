@@ -5,38 +5,29 @@ CSC155 201h sp -->
 
 <html>
 <head>
-<title>Mary's CSC155 Class Website</title>
+<title>Mary's Quest for World Domination</title>
 <?php
 // php library with php functions
 require("lib/phpfunctions.php");
 
-
-
-$user = "mbrown287";
-$conn = mysqli_connect("localhost", $user, $user, $user);
+session_start();
+$conn=connectDB();
 
 $message="";
-$username=getPost('username');
-$password=getPost('password');
-$usergroup=getPost('usergroup');
-
-if (mysqli_connect_errno())
-{
-  echo "<b>Failed to connect to MySQL: " . mysqli_connect_error() . "</b>";
-}
+$username=getPost('username155');
+$password=getPost('password155');
 
 if (isset($_POST['choice']))
 {
-  $choice = $_POST['choice'];
   if ($_POST['choice'] == 'Login')
   {
-    if (validate_login($username, $password))
+    if (validate_login($conn, $username, $password))
     {
       $_SESSION['username'] = $username;
       header('Location: welcome.php');
     }
     $message = "Invalid username or password!";
-    }
+  }
   if ($_POST['choice'] == 'New User')
   {
      header('Location: newuser.php'); 
@@ -52,12 +43,13 @@ background-color: #4AA516; padding: 5px; margin-left: auto;
 margin-right: auto;">
 <tr>
 <td>User:</td>
-<td><input type='text' name='username' value='<?php showPost("username");?>'></td>
+<td><input type='text' name='username155' value='<?php 
+showPost("username155");?>'></td>
 </tr>
 <tr>
 <td>Password:</td> 
-<td><input type='password' name='password' value='<?php 
-showPost("password");?>'></td>
+<td><input type='password' name='password155' value='<?php 
+showPost("password155");?>'></td>
 </tr>
 <td>User Group:</td>
 <td><input type='text' name='usergroup' value='<?php
