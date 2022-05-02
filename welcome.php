@@ -28,7 +28,7 @@ validate_or_bounce();
 world!</h3></center> 
 <br>
 <br>
-<div id=<?php require("lib/footer.php"); ?></div>
+<div  id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
 
