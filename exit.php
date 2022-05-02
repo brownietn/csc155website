@@ -6,6 +6,8 @@ CSC155 201h sp -->
 <html>
 <head>
 <title>Mary's Quest for World Domination</title>
+<?php
+
 // php library loading first
 require("lib/phpfunctions.php");
 
@@ -23,7 +25,7 @@ header("refresh: 5; url=login.php");
 <body>
 
 
-Good bye, redirecting in 5 seconds.
+<h2>Good bye, redirecting in 5 seconds.</h2>
 
 
 </body>
