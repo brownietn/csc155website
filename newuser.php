@@ -40,6 +40,7 @@ if(isset($_POST['choice']))
 
       $stmt->execute();
     }
+    header("Location: login.php");
   }
 }
 

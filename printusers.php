@@ -14,12 +14,101 @@ require("lib/phpfunctions.php");
 session_start();
 validate_or_bounce();
 
+function editButton($id)
+{
+  echo "<form action='updateuser.php' method='POST'>";
+  echo "<input type='hidden' name='id' value='" . $id . "'>";
+  echo "<input type='submit' name='choice' value='Edit'>";
+  echo "</form>";
+}
+
+function deleteButton($id)
+{
+  echo "<form method='POST' onsubmit='return confirm(\"Delete record number:
+        $id ?\")'>";
+  echo "input type='hidden' name='id' value='" . $id . "'>";
+  echo "input type='submit' name='choice' value='Delete'>";
+  echo "</form>";
+}
+
+function undeleteButton($id)
+{
+  echo "<form method='POST'>";
+  echo "<input type='hidden' name='id' value='" . $id . "'>";
+  echo "<input type='submit' name='choice' value='Undelete'>";
+  echo "</form>";
+}
+
+function echoUsers($conn)
+{
+  $sql = "SELECT * FROM users;";
+  $result = $conn->query($sql);
+
+  if($result->num_rows > 0)
+  {
+    echo "<table border='1'>";
+    
+    echo "\n<tr>";
+      echo "<th>" ."id" . "</th>";
+      echo "<th>" ."deleted?" . "</th>";
+    echo "<th>" . "username" . "/";
+    echo "" . "email" . "</th>";
+    echo "<?tr>";
+   
+    while($row = $result->fetch_assoc())
+    {
+      echo "\n<tr>";
+        echo "\n\t<td>" . htmlspecialchars($row["id"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["deleted_at"]) . "</td>";
+      echo "\n\t<td>" . htmlspecialchars($row["username"]) . "<br>";
+      echo "" . htmlspecialchars($row["email"}) . "</td>";
+
+        echo "\n\t<td valign='center'>";
+      editButton($row["id"]);
+      deleteButton($row["id]);
+      undeleteButton($row["id"]);
+      echo "</td>";
+      echo "\n</tr>";
+      } 
+    echo "<table>";
+    }
+    else
+    {
+      echo "0 results";
+    }
+}
+
+$user = "mbrown287";
+$conn = mysqli_connect("localhost", $user, $user, $user);
+
+if(isset($_POST['choice']))
+{
+  $choice = $_POST['choice'];
+  if($choice == "Delete")
+  {
+    $sql = "UPDATE users SET deleted_at=NOW() WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $id=$_POST['id'];
+    $stmt->execute();
+  }
+
+  else if($choice == "Undelete")
+  {
+    $sql = "UPDATE users SET deleted_at=NULL WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $id=$_POST['id];
+    $stmt->execute();
+  }
+}
+
 ?>
 </head>
 <body>
 <?php readfile("lib/header.html"); ?>
 
-<!-- Content goes here -->
+<?php echoUsers($conn);?>
 
 <?php require("lib/footer.php"); ?>
 </body>
