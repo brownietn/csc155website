@@ -20,10 +20,17 @@ validate_or_bounce();
 <?php readfile("lib/adminheader.html"); ?>
 <br><br>
 
-content goes here
-
-
-<div id=<?php require("lib/footer.php"); ?></div>
+<center><h3>Everything feel like it's out of your control?</h3></center>
+<br>
+<center><h3>Is it a bit to peoplely out there?</h3></center>
+<br>
+<center><h3>You've come to the right place!</h3></center>
+<br>
+<center><h3>Check out our options for assistance in dominating your 
+world!</h3></center> 
+<br>
+<br>
+<div  id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
 

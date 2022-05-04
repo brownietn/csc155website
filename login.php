@@ -16,6 +16,7 @@ $conn=connectDB();
 $message="";
 $username=getPost('username155');
 $password=getPost('password155');
+$usergroup=getPost('usergroup');
 
 if (isset($_POST['choice']))
 {
@@ -23,10 +24,16 @@ if (isset($_POST['choice']))
   {
     if (validate_login($conn, $username, $password))
     {
-      $_SESSION['username'] = $username;
+      $_SESSION['username']=$username && $_SESSION['username']['usergroup']='Admin';
+      header('Location: adminwelcome.php');
+    }
+    else  
+    {
+      $_SESSION['username']=$username;
       header('Location: welcome.php');
     }
-    $message = "Invalid username or password!";
+   $message = "Invalid username or password!";
+    
   }
   if ($_POST['choice'] == 'New User')
   {

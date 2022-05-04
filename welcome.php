@@ -20,9 +20,11 @@ validate_or_bounce();
 <?php readfile("lib/header.html"); ?>
 <br><br>
 
-<center><h3>Having a bad day, week, month, year?</h3></center>
+<center><h3>Everything feel like it's out of your control?</h3></center>
 <br>
-<center><h3>Need help making it better?</h3></center>
+<center><h3>Is it a bit to peoplely out there?</h3></center>
+<br>
+<center><h3>You've come to the right place!</h3></center>
 <br>
 <center><h3>Check out our options for assistance in dominating your 
 world!</h3></center> 

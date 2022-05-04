@@ -5,9 +5,9 @@ CSC155 201h sp -->
 
 <?php
 
-function validate_or_bounce()
+function validate_or_bounce($usergroup="None")
 {
-  if (!isset($_SESSION['username']))
+  if (!isset($_SESSION['username']))  
   header("Location: login.php");
 }
 
@@ -24,6 +24,7 @@ function getPost($key)
   return "";
 }
 
+
 function validate_login($conn, $username, $password)
 {
   if ($username=="Wonder" && $password=="Woman")
@@ -31,7 +32,7 @@ function validate_login($conn, $username, $password)
   $row = getUserByUsername($conn, $username);
 
   if($row == "fail")
-    return false;
+    return false;  
   if (password_verify($password, $row['encrypted_password']))
     return true;
     header('Location: login.php');

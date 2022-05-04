@@ -65,7 +65,9 @@ if (isset($_POST['choice']))
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
