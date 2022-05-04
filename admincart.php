@@ -31,9 +31,9 @@ validate_or_bounce();
 ?>
 </head>
 <body>
-<?php readfile("lib/header.html"); ?>
+<?php readfile("lib/adminheader.html"); ?>
 
-<h4>The following villians will be arriving soon when you place your order!</h4>
+<h4>The following villians will be arriving soon!</h4>
 <br>
 <?php echoCart() ?>
 <br>
