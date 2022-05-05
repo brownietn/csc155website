@@ -17,10 +17,15 @@ validate_or_bounce();
 ?>
 </head>
 <body>
-<?php readfile("lib/header.html"); ?>
+<?php readfile("lib/adminheader.html"); ?>
 <br><br>
-
- 
+<center><h2>Administrators can take the following actions</h2></center>
+<br>
+<br>
+<center><h3><a href='printusers.php'>Display or Edit Users</a></h3></center>
+<br>
+<br>
+<center><h3><a href='printorders.php'>Display Orders</a></h3></center> 
 <br>
 <br>
 <div  id=<?php require("lib/footer.php"); ?></div>

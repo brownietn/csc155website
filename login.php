@@ -24,7 +24,8 @@ if (isset($_POST['choice']))
   {
     if (validate_login($conn, $username, $password))
     {
-      $_SESSION['username']=$username && $_SESSION['username']['usergroup']='Admin';
+      $_SESSION['username']=$username && $_SESSION['username']['usergroup']
+      ='Admin' || 'admin';
       header('Location: adminwelcome.php');
     }
     else  

@@ -14,33 +14,25 @@ require("lib/phpfunctions.php");
 session_start();
 validate_or_bounce();
 
-function editButton($id)
+function shippedButton($id)
 {
-  echo "<form action='updateuser.php' method='POST'>";
+  echo "<form method='POST' onsubmit='return confirm(\"Shipped: $id ?\")' > ";
   echo "<input type='hidden' name='id' value='" . $id . "'>";
-  echo "<input type='submit' name='choice' value='Edit'>";
-}
-
-function deleteButton
-{
-  echo "<form method='POST' onsubmit='return confirm(\" Delete record number: 
-  $id ?\")' > ";
-  echo "<input type='hidden' name='id' value='" . $id . "'>";
-  echo "<input type='submit' name='choice' value='Delete'>";
+  echo "<input type='submit' name='choice' value='Shipped'>";
   echo "</form>";
 }
 
-function undeleteShipped($id)
+function notShipped($id)
 {
   echo "<form method='POST'>";
   echo "<input type='hidden' name='id' value=' " . $id . " '>";
-  echo "<input type='submit' name='choice' value='Undelete'>";
+  echo "<input type='submit' name='choice' value='Not Shipped'>";
   echo "</form>";
 }
 
-function echoUsers($conn)
+function echoOrders($conn)
 {
-  $sql = "SELECT * FROM users;";
+  $sql = "SELECT * FROM orders;";
   $result = $conn->query($sql);
 
   if($result->num_rows > 0)
@@ -49,26 +41,27 @@ function echoUsers($conn)
     
     echo "\n<tr>";
       echo "<th>" ."id" . "</th>";
-      echo "<th>" ."deleted . "</th>";
+      echo "<th>" ."shipped" . "</th>";
       echo "<th>" . "username" . "</th>";
-      echo "<th>" . "email" . "</th>";
-      echo "<th>" . "usergroup" . "</th>";
-      echo "<th>" . "encrypted_password" . "</th>";
+      echo "<th>" . "catwoman" . "</th>";
+      echo "<th>" . "gemini" . "</th>";
+      echo "<th>" . "harleyquinn" . "</th>";
+      echo "<th>" . "poisonivy" . "</th>";
     echo "<?tr>";
    
     while($row = $result->fetch_assoc())
     {
       echo "\n<tr>";
         echo "\n\t<td>" . htmlspecialchars($row["id"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["deleted_at"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["shipped"]) . "</td>";
         echo "\n\t<td>" . htmlspecialchars($row["username"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["email"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["usergroup"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["encrypted_password"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["catwoman"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["gemini"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["harleyquinn"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["poisonivy"]) . "</td>";
       echo "\n\t<td valign='center'>";
-      editButton($row["id"]);
-      deleteButton($row["id"]);
-      undeleteButton($row["id"]);      
+      shippedButton($row["id"]);
+      notShippedButton($row["id"]);      
       echo "</td>";
       echo "\n</tr>";
       } 
@@ -86,18 +79,18 @@ $conn = mysqli_connect("localhost", $user, $user, $user);
 if(isset($_POST['choice']))
 {
   $choice = $_POST['choice'];
-  if($choice == "Delete")
+  if($choice == "Shipped")
   {
-    $sql = "UPDATE users SET deleted_at=NOW() WHERE id=?";
+    $sql = "UPDATE orders SET deleted_at=NOW() WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
     $stmt->execute();
   }
 
-  else if($choice == "Undelete")
+  else if($choice == "Not Shipped")
   {
-    $sql = "UPDATE users SET deleted_at=NULL WHERE id=?";
+    $sql = "UPDATE orders SET deleted_at=NULL WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
@@ -113,7 +106,7 @@ if(isset($_POST['choice']))
 <br>
 <br>
 
-<?php echoUsers($conn);?>
+<?php echoOrders($conn);?>
 
 <br>
 <br>

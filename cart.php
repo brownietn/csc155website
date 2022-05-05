@@ -24,6 +24,39 @@ function echoCart()
   }
 }
 
+function addToOrders()
+{
+  $user="mbrown287";
+  $conn=mysqli_connect("localhost", $user, $user, $user);
+
+  if(mysqli_connect_errno())
+  {
+    echo "<b>Failed to connect to MySQL: " . mysqli_connect.error() . "</b>";
+  }
+
+  if(isset($_POST['choice']))
+  {
+    $choice=$_POST['choice'];
+    if(choice == "Place Order")
+    {
+      $stmt = $conn->prepare("INSERT INTO orders SET username=?
+                                                     catwoman=?
+                                                     gemini=?
+                                                     harleyquinn=?
+                                                     poisonivy=?");
+      $stmt->bind_param("siiii", $username, $catwoman, $gemini,
+                        $harleyquinn, $poisonivy);
+      $username=$_POST['username155'];
+      $catwoman=$_POST['$item'];
+      $gemini=$_POST['$item'];
+      $harleyquinn=$_POST['$item'];
+      $poisonivy=$_POST['$item'];
+
+      $stmt->execute();
+    }
+    header("Location: cart.php");
+  }
+}
 //php startup code
 session_start();
 validate_or_bounce();
@@ -38,8 +71,15 @@ validate_or_bounce();
 <?php echoCart() ?>
 <br>
 <br>
+<form method='POST'>
+<input type='submit' name='choice' value='Place Order'> 
+</form>
 <br>
+<br>
+<br>
+
 <div id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>
+
 
