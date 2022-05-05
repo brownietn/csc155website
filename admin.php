@@ -28,6 +28,11 @@ validate_or_bounce();
 <center><h3><a href='printorders.php'>Display Orders</a></h3></center> 
 <br>
 <br>
+<center><h3><a href='printmessages.php'>Display Messages</a></h3></center>
+<br>
+<br>
+<br>
+<br>
 <div  id=<?php require("lib/footer.php"); ?></div>
 </body>
 </html>

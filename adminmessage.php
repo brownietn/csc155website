@@ -39,7 +39,7 @@ if(isset($_POST['choice']))
 ?>
 </head>
 <body>
-<?php readfile("lib/header.html"); ?>
+<?php readfile("lib/adminheader.html"); ?>
 <br><br>
 
 <center><h3>Send a message to the website owner</h3></center>

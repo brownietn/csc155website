@@ -14,33 +14,27 @@ require("lib/phpfunctions.php");
 session_start();
 validate_or_bounce();
 
-function editButton($id)
-{
-  echo "<form action='updateuser.php' method='POST'>";
-  echo "<input type='hidden' name='id' value='" . $id . "'>";
-  echo "<input type='submit' name='choice' value='Edit'>";
-}
 
-function deleteButton($id)
+function readButton($id)
 {
-  echo "<form method='POST' onsubmit='return confirm(\" Delete record number: 
+  echo "<form method='POST' onsubmit='return confirm(\" Mark as read: 
   $id ?\")' > ";
   echo "<input type='hidden' name='id' value='" . $id . "'>";
-  echo "<input type='submit' name='choice' value='Delete'>";
+  echo "<input type='submit' name='choice' value='Read'>";
   echo "</form>";
 }
 
-function undeleteButton($id)
+function unreadButton($id)
 {
   echo "<form method='POST'>";
   echo "<input type='hidden' name='id' value=' " . $id . " '>";
-  echo "<input type='submit' name='choice' value='Undelete'>";
+  echo "<input type='submit' name='choice' value='Not Read'>";
   echo "</form>";
 }
 
-function echoUsers($conn)
+function echoMessages($conn)
 {
-  $sql = "SELECT * FROM users;";
+  $sql = "SELECT * FROM messages;";
   $result = $conn->query($sql);
 
   if($result->num_rows > 0)
@@ -49,26 +43,21 @@ function echoUsers($conn)
     
     echo "\n<tr>";
       echo "<th>" ."id" . "</th>";
-      echo "<th>" ."deleted" . "</th>";
+      echo "<th>" ."read_at" . "</th>";
       echo "<th>" . "username" . "</th>";
-      echo "<th>" . "email" . "</th>";
-      echo "<th>" . "usergroup" . "</th>";
-      echo "<th>" . "encrypted_password" . "</th>";
+      echo "<th>" . "message" . "</th>";
     echo "</tr>";
    
     while($row = $result->fetch_assoc())
     {
       echo "\n<tr>";
         echo "\n\t<td>" . htmlspecialchars($row["id"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["deleted_at"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["read_at"]) . "</td>";
         echo "\n\t<td>" . htmlspecialchars($row["username"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["email"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["usergroup"]) . "</td>";
-        echo "\n\t<td>" . htmlspecialchars($row["encrypted_password"]) . "</td>";
+        echo "\n\t<td>" . htmlspecialchars($row["message"]) . "</td>";
       echo "\n\t<td valign='center'>";
-      editButton($row["id"]);
-      deleteButton($row["id"]);
-      undeleteButton($row["id"]);      
+      readButton($row["id"]);
+      unreadButton($row["id"]);      
       echo "</td>";
       echo "\n</tr>";
       } 
@@ -86,18 +75,18 @@ $conn = mysqli_connect("localhost", $user, $user, $user);
 if(isset($_POST['choice']))
 {
   $choice = $_POST['choice'];
-  if($choice == "Delete")
+  if($choice == "Read")
   {
-    $sql = "UPDATE users SET deleted_at=NOW() WHERE id=?";
+    $sql = "UPDATE messages SET deleted_at=NOW() WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
     $stmt->execute();
   }
 
-  else if($choice == "Undelete")
+  else if($choice == "Not Read")
   {
-    $sql = "UPDATE users SET deleted_at=NULL WHERE id=?";
+    $sql = "UPDATE messages SET deleted_at=NULL WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
@@ -113,7 +102,7 @@ if(isset($_POST['choice']))
 <br>
 <br>
 
-<?php echoUsers($conn);?>
+<?php echoMessages($conn);?>
 
 <br>
 <br>
