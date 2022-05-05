@@ -39,27 +39,16 @@ function addOrders()
     $choice = $_POST['choice'];
     if($choice == "Place Order")
     {
-      $items = array('Catwoman', 'Gemini', 'Harley Quinn', 'Poison Ivy');
+      $items = array('CatWoman', 'Gemini', 'Harley Quinn', 'Poison Ivy');
       foreach($items as $item)
       {
-        if(isset($_SESSION[$item]) && $_SESSION[$item]>0)
-        {
-          $stmt = $conn->prepare("INSERT INTO orders SET username=?,
-                                                         catwoman=?,
-                                                         gemini=?,
-                                                         harleyquinn=?,
-                                                         poisonivy=?");
-          $stmt->bind_param("siiii", $username, $catwoman, $gemini, 
-                            $harleyquinn, $poisonivy);
-          $username=$_POST['username155'];
-          $catwoman=$_POST['Catwoman'];
-          $gemini=$_POST['Gemini'];
-          $harleyquinn=$_POST['Harley Quinn'];
-          $poisonivy=$_POST['Poison Ivy'];
-
-          $stmt->execute();
-        }
+        $stmt = $conn->prepare("INSERT INTO orders SET (username,
+                catwoman,gemini,harleyquinn,poisonivy) VALUES
+                 ('$username', '$CatWoman', '$Gemini', '$Harley Quinn', 
+                 '$Poison Ivy'");
+    
       }             
+    
     }
   }
 }
