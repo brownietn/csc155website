@@ -77,7 +77,7 @@ if(isset($_POST['choice']))
   $choice = $_POST['choice'];
   if($choice == "Read")
   {
-    $sql = "UPDATE messages SET deleted_at=NOW() WHERE id=?";
+    $sql = "UPDATE messages SET read_at=NOW() WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
@@ -86,7 +86,7 @@ if(isset($_POST['choice']))
 
   else if($choice == "Not Read")
   {
-    $sql = "UPDATE messages SET deleted_at=NULL WHERE id=?";
+    $sql = "UPDATE messages SET read_at=NULL WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];

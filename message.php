@@ -30,7 +30,7 @@ if(isset($_POST['choice']))
     $stmt = $conn->prepare("INSERT INTO messages SET username=?,
                                                     message=?");
     $stmt->bind_param("ss", $username, $message);
-    $username=$_POST['username155'];
+    $username=$_SESSION['username'];
     $message=$_POST['message'];
     $stmt->execute();
   }
@@ -46,10 +46,10 @@ if(isset($_POST['choice']))
 <br>
 <br>
 <form method='POST'>
-<br>ReEnter Username:<input type='text' name='username155'>
-<textarea rows="30" cols="150" name="message" value="message"></textarea>
+<center><textarea rows="20" cols="150" name="message" value="message">
+</textarea></center>
 <br>
-<br><input type='submit' name='choice' value='Send Message'>
+<br><center><input type='submit' name='choice' value='Send Message'></center>
 </form>
 <br>
 <br>
