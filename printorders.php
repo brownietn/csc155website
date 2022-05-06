@@ -46,7 +46,7 @@ function echoOrders($conn)
       echo "<th>" . "catwoman" . "</th>";
       echo "<th>" . "gemini" . "</th>";
       echo "<th>" . "harleyquinn" . "</th>";
-      echo "<th>" . "poisonivy" . "</th>";
+      echo "<th>" . "poisonivy" . "<?th>";
     echo "<?tr>";
    
     while($row = $result->fetch_assoc())
@@ -81,7 +81,7 @@ if(isset($_POST['choice']))
   $choice = $_POST['choice'];
   if($choice == "Shipped")
   {
-    $sql = "UPDATE orders SET deleted_at=NOW() WHERE id=?";
+    $sql = "UPDATE orders SET shipped=NOW() WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
@@ -90,7 +90,7 @@ if(isset($_POST['choice']))
 
   else if($choice == "Not Shipped")
   {
-    $sql = "UPDATE orders SET deleted_at=NULL WHERE id=?";
+    $sql = "UPDATE orders SET shipped=NULL WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $id=$_POST['id'];
